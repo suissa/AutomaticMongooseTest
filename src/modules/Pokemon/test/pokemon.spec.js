@@ -2,40 +2,48 @@ require('./../../../db/config.test')
 const assert = require('assert')
 const Controller = require('./../controller')
 
+const removeAll = (done) => {
+  Controller.remove({}, (err, data)=> done())
+}
+
+const testFind = (done) => {
+  const query = {}
+  const callback = (err, data) => {
+    assert.equal(null, err, 'Erro não é nulo')
+    assert.equal(0, data.length, 'Lista não veio vazia')
+    done()
+  }
+  Controller.find(query, callback)
+}
+
+const testCreate = (done) => {
+  var mod = {
+    name: 'TESTE',
+    attack: 9001,
+    defense: 8001
+  }
+  var callback = (err, data) => {
+    assert.equal(null, err, 'Erro não é nulo')
+    assert.equal('object', typeof data._id)
+    assert.equal('TESTE', data.name)
+    assert.equal(9001, data.attack)
+    assert.equal(8001, data.defense)
+    done()
+  }
+  Controller.create(mod, callback)
+}
+
 describe('Pokemon Controller', () => {
-
-  before( (done) => {
-    Controller.remove({}, (err, data)=> done())
-  })
-
-  var msg1 = 'Quando iniciamos sem pokemons o FIND deve vir vazio'
-  describe(msg1, () => {
+  describe('FIND', (done) => {
+    before(removeAll)
     it('Deve retornar um Array VAZIO', (done) => {
-      var query = {}
-      var callback = (err, data) => {
-        assert.equal(null, err, 'Erro não é nulo')
-        assert.equal(0, data.length, 'Lista não veio vazia')
-        done()
-      }
-      Controller.find(query, callback)
+      testFind(done)
     })
   })
-  describe('CREATE', () => {
+  describe('CREATE', (done) => {
     it('No CREATE o retorno deve ser o mesmo objeto enviado, adicionado _id', (done) => {
-      var mod = {
-        name: 'TESTE',
-        attack: 9001,
-        defense: 8001
-      }
-      var callback = (err, data) => {
-        assert.equal(null, err, 'Erro não é nulo')
-        assert.equal('object', typeof data._id)
-        assert.equal('TESTE', data.name)
-        assert.equal(9001, data.attack)
-        assert.equal(8001, data.defense)
-        done()
-      }
-      Controller.create(mod, callback)
+      before(removeAll)
+      testCreate(done)
     })
   })
 }) 

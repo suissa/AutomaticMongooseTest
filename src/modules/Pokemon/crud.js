@@ -36,6 +36,15 @@ const CRUD = {
     }
     Controller.update(query, mod, cb)
   },
+  updateMany: (req, res) => {
+    let query = {_id: req.params.id}
+    let mod = req.body
+    let cb =  function (err, data) {
+      if (err) throw new Error(err)
+      res.json(data)
+    }
+    Controller.update(query, mod, cb)
+  },
   remove: (req, res) => {
     let query = {_id: req.params.id}
     let cb = (err, data) => {

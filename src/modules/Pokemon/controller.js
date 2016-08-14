@@ -8,12 +8,19 @@ const Controller = {
   find: function(query, callback) {
     Model.find(query,callback);
   },
+  findOne: function(query, callback) {
+    Model.findOne(query,callback);
+  },
   remove: function(query, callback) {
     Model.remove(query, callback)
   },
-  update: function(query, mod, callback) {
-    Model.update(query, mod, callback);
+  updateOne: function(query, callback) {
+    Model.update(query, callback);
   },
+  updateMany: function(query, callback) {
+    const mod = {multi: true} 
+    Model.update(query, mod, callback);
+  }
 };
 
 module.exports = Controller;

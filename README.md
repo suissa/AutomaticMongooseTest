@@ -1,0 +1,2 @@
+# AutomaticMongooseTest
+AutomaticMongooseTest

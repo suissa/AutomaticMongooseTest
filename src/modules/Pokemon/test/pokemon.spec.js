@@ -16,7 +16,7 @@ const testFind = (done) => {
   Controller.find(query, callback)
 }
 
-const testCreate = (done) => {
+const createOne = (done) => {
   var mod = {
     name: 'TESTE',
     attack: 9001,
@@ -33,7 +33,24 @@ const testCreate = (done) => {
   Controller.create(mod, callback)
 }
 
-describe('Pokemon Controller', () => {
+const testCreateOne = (done) => {
+  var mod = {
+    name: 'TESTE',
+    attack: 9001,
+    defense: 8001
+  }
+  var callback = (err, data) => {
+    assert.equal(null, err, 'Erro não é nulo')
+    assert.equal('object', typeof data._id)
+    assert.equal('TESTE', data.name)
+    assert.equal(9001, data.attack)
+    assert.equal(8001, data.defense)
+    done()
+  }
+  Controller.create(mod, callback)
+}
+
+describe('Pokemon Controller', (done) => {
   describe('FIND', (done) => {
     before(removeAll)
     it('Deve retornar um Array VAZIO', (done) => {
@@ -41,10 +58,11 @@ describe('Pokemon Controller', () => {
     })
   })
   describe('CREATE', (done) => {
+    before(removeAll)
     it('No CREATE o retorno deve ser o mesmo objeto enviado, adicionado _id', (done) => {
-      before(removeAll)
-      testCreate(done)
+      testCreateOne(done)
     })
+    after(removeAll)
   })
 }) 
 

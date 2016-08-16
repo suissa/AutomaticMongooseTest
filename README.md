@@ -70,7 +70,7 @@ Para depois criarmos os testes de cada funcionalidade, que são:
 describe('CREATE', (done) => {})
 describe('READ', (done) => {})
 describe('UPDATE', (done) => {})
-describe('CREATE', (done) => {})
+describe('DELETE', (done) => {})
 ```
 
 Será dentro de cada `describe` desse que iremos colocar nossos testes específicos.

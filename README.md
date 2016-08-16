@@ -85,6 +85,23 @@ it('Deve retornar um Array VAZIO', (done) => {
 })
 ```
 
+No feedback retornado pelo mocha veremos cada `it` como uma lista de testes validados ou não
+
+```
+  Pokemon Controller
+    READ
+      1) Teste que não validou
+      ✓ Teste que validou
+
+  1 passing (81ms)
+  1 failing
+
+```
+
+Vai me dizer que não é muito fácil de entender quando os testes são executados?
+
+> Quanto melhor você descrever seu teste melhor ele será!
+
 ### before
 
 A função do `before` será necessária para executarmos ações para deixar o ambiente de testes na forma correta, por exemplo:

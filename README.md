@@ -6,6 +6,47 @@ Na última aula da Pós-graduação que dei em Umuarama, na faculdade Alfa, eu e
 
 Quem trabalha com TDD realmente sabe o quão chato é fazer testes para CRUD e como sabemos essas funções devem ser padronizadas, então por que não automatizar esse processo?
 
+## O Código
+
+Vamos iniciar testando esse código **bem simples** que serve como uma **interface** para o nosso *Model* do Mogoose, onde usaremos as seguintes funções:
+
+- Model.create(data, callback)
+- Model.find(query,callback)
+- Model.findOne(query,callback)
+- Model.update(query, callback)
+- Model.remove(query, callback)
+
+Vamos nomear como *Controller* para facilitar o entendimento:
+
+```js
+'use strict'
+
+const Model = require('./model')
+const Controller = {
+  create: function(data, callback) {
+    Model.create(data, callback)
+  },
+  find: function(query, callback) {
+    Model.find(query,callback)
+  },
+  findOne: function(query, callback) {
+    Model.findOne(query,callback)
+  },
+  remove: function(query, callback) {
+    Model.remove(query, callback)
+  },
+  updateOne: function(query, callback) {
+    Model.update(query, callback)
+  },
+  updateMany: function(query, callback) {
+    const mod = {multi: true} 
+    Model.update(query, mod, callback)
+  }
+}
+
+module.exports = Controller
+```
+
 ## O Teste
 
 Vamos padronizar nosso teste com essa estrutura:
@@ -104,7 +145,7 @@ Vai me dizer que não é muito fácil de entender quando os testes são executad
 
 ### before
 
-A função do `before` será necessária para executarmos ações para deixar o ambiente de testes na forma correta, por exemplo:
+A função do `before` será necessária para executarmos ações que deixarão o ambiente de testes na forma correta, por exemplo:
 
 Preisamos limpar a base antes de fazer o teste de busca que retorna um *Array* vazio, então fazemos assim:
 
@@ -126,7 +167,7 @@ before(removeAll)
 
 No caso sempre encpsularemos as lógicas em funções para reusarmos.
 
-Vamos padronizar que para **TODO** teste iremos limpar a base, **ANTES** de utilizar, usando a função mostrada acima.
+> Vamos padronizar que para **TODO** teste iremos limpar a base, **ANTES** de utilizar, usando a função mostrada acima.
 
 ### after
 

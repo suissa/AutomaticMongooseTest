@@ -1,0 +1,22 @@
+{
+  "name": "charlatan-examples",
+  "version": "1.0.0",
+  "description": "Exemplos com o Charlatan",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "charlantan",
+    "validation",
+    "webschool",
+    "node",
+    "js"
+  ],
+  "author": "Suissa",
+  "license": "WTFPL",
+  "dependencies": {
+    "charlatan": "^1.0.0",
+    "pokemon-random-name": "^1.0.2"
+  }
+}

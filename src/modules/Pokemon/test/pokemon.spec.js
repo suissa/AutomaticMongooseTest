@@ -10,7 +10,7 @@ const testFind = (done) => {
   const query = {}
   const callback = (err, data) => {
     assert.equal(null, err, 'Erro não é nulo')
-    assert.equal(0, data.length, 'Lista não veio vazia')
+    assert.equal(1, data.length, 'Lista não veio vazia')
     done()
   }
   Controller.find(query, callback)

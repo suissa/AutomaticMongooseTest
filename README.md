@@ -217,5 +217,36 @@ Sabemos que temos as seguintes funções:
 
 ### Create
 
-Para testarmos o `CREATE` iniciamos
+Para testarmos o `CREATE` iniciamos limpando a base de testes e depois faremos 2 testes padronizados:
+
+- cadastrar 1 entidade
+- cadastrar mais de 1 entidade, de preferência 5.
+
+
+## Automatizaçao
+
+### Charlatan
+
+O [Charlantan](http://nodeca.github.io/charlatan/) é o módulo que usaremos para gerar valores aleatórios mas que sigam certas *regras*, por exemplo:
+
+```js
+const Charlatan = require('charlatan')
+
+const name = require('pokemon-random-name')()
+const attack = Charlatan.numerify('####') 
+const defense = Charlatan.numerify('####')  
+
+console.log('name', name)
+console.log('attack', attack)
+console.log('defense', defense)
+```
+
+> Percebeu que estou usandoo módulo `pokemon-random-name`?
+
+
+Então como não existia uma função que gerasse nomes aleatórios para Pokemons eu criei o meu, ele está aqui [https://www.npmjs.com/package/pokemon-random-name](https://www.npmjs.com/package/pokemon-random-name)
+
+> Usaremos esse método para não definirmos manualmente nenhum valor!
+
+
 
